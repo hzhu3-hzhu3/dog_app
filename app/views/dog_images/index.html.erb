@@ -3,7 +3,7 @@
   <div class="row">
     <% @dog_images.each do |image| %>
       <div class="col-md-3 mb-3">
-        <%= link_to image_tag(image.url, class: "img-fluid rounded"), dog_image_path(image) %>
+        <%= link_to image_tag(image.url, class: "img-fluid rounded", alt: "breed image"), dog_image_path(image) %>
       </div>
     <% end %>
   </div>
