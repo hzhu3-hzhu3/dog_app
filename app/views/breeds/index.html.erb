@@ -1,2 +1,44 @@
 <h1>Breeds#index</h1>
 <p>Find me in app/views/breeds/index.html.erb</p>
+
+<div class="container">
+  <h1 class="mb-4">All Dog Breeds</h1>
+
+  <%= form_with url: breeds_path, method: :get, local: true do |form| %>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <%= form.label :q, "Search Breeds" %>
+        <%= form.text_field :q, value: params[:q], class: "form-control" %>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= form.label :parent_id, "Parent Breed" %>
+        <%= form.select :parent_id, options_from_collection_for_select(Breed.where(parent_id: nil).order(:name), :id, :name, params[:parent_id]), { include_blank: "All" }, class: "form-control" %>
+      </div>
+      <div class="col-md-2 mb-3 align-self-end">
+        <%= form.submit "Search", class: "btn btn-primary btn-block" %>
+      </div>
+    </div>
+  <% end %>
+
+  <% @breeds.each do |parent| %>
+    <div class="card mb-3">
+      <div class="card-header">
+        <h2><%= link_to parent.name, breed_path(parent) %></h2>
+      </div>
+      <% if parent.sub_breeds.any? %>
+        <div class="card-body">
+          <h5>Sub-breeds:</h5>
+          <ul class="list-unstyled">
+            <% parent.sub_breeds.each do |child| %>
+              <li><%= link_to child.name, breed_path(child) %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="mt-4">
+    <%= paginate @breeds %>
+  </div>
+</div>
