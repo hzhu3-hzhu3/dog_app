@@ -6,13 +6,14 @@ class BreedsController < ApplicationController
       breeds = Breed.all
     end
 
-    @breeds = if params[:parent_id].present?
-                breeds.where(parent_id: params[:parent_id])
-              else
-                breeds.where(parent_id: nil)
-              end
+    if params[:parent_id].present? && params[:parent_id] != ""
+      parent_id = params[:parent_id].to_i
+      breeds = breeds.where(parent_id: parent_id)
+    else
+      breeds = breeds.where(parent_id: nil)
+    end
 
-    @breeds = @breeds.order(:name).page(params[:page]).per(20)
+    @breeds = breeds.order(:name).page(params[:page]).per(20)
   end
 
   def show

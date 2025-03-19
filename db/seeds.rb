@@ -57,7 +57,7 @@ while facts_array.size < 20
     facts_array.concat(new_facts) if new_facts
     facts_array.uniq! 
   rescue => e
-    puts "❌ Error fetching facts: #{e.message}"
+    puts "Error fetching facts: #{e.message}"
   end
   break if facts_array.size >= 20
 end
@@ -68,14 +68,14 @@ end
 puts "Facts imported: #{Fact.count}"
 
 all_facts = Fact.all
-Breed.all.sample((Breed.count * 0.5).to_i).each do |random_breed|
-  selected_facts = all_facts.sample(3)
+Breed.all.each do |breed|
+  selected_facts = all_facts.sample(3) # 随机分配 3 个 facts
   selected_facts.each do |f|
-    BreedFact.create!(breed: random_breed, fact: f)
+    BreedFact.create(breed: breed, fact: f)
   end
 end
 
-puts "Importing Dog Diseases from CSV..."
+puts "Importing Dog Diseases from CSV"
 csv_path = Rails.root.join('db', 'data/dog_diseases.csv')  
 CSV.foreach(csv_path, headers: true) do |row|
   DogDisease.create!(
@@ -86,7 +86,7 @@ end
 puts "DogDiseases imported: #{DogDisease.count}"
 
 
-puts "Assigning diseases to all Breeds..."
+puts "Assigning diseases to all Breeds"
 all_diseases = DogDisease.all
 Breed.find_each do |random_breed|
   selected_diseases = all_diseases.sample(rand(2..4)) 

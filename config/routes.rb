@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "dog_images/show"
+  get "dog_diseases/show"
+  get "facts/show"
   get "breeds/index"
   get "breeds/show"
   get "pages/about", to: "pages#about", as: "about"
@@ -16,7 +19,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :dog_images, only: [:show]
+  resources :dog_images, only: [:index, :show]
   resources :dog_diseases, only: [:show, :index]
   resources :facts, only: [:show, :index]
 end

@@ -1,22 +1,78 @@
 <h1>About Dog App</h1>
 
-<p>This application uses data from the following sources:</p>
+<p>
+  The Dog App is a web application designed to provide detailed information about different dog breeds, 
+  including their images, interesting facts, and common diseases. This project integrates multiple data sources 
+  to deliver a comprehensive experience for users who want to learn more about various dog breeds.
+</p>
+
+<h2>Data Sources</h2>
+<p>
+  This application retrieves and processes data from the following sources:
+</p>
+
 <ul>
   <li>
     <strong>Dog Breeds API:</strong>
     <a href="https://dog.ceo/api/breeds/list/all" target="_blank">https://dog.ceo/api/breeds/list/all</a>
+    <p>
+      This API provides a structured list of dog breeds and their sub-breeds. The data includes hierarchical 
+      relationships between parent breeds and sub-breeds, which is reflected in our application's breed navigation system.
+    </p>
   </li>
+
   <li>
-    <strong>Dog Facts API (locally hosted):</strong>
+    <strong>Dog Images API:</strong>
+    <a href="https://dog.ceo/api/breeds/image/random" target="_blank">https://dog.ceo/api/breeds/image/random</a>
+    <p>
+      The application fetches random dog images for each breed using this API. Images are stored in the database 
+      and displayed dynamically on the breed detail pages.
+    </p>
+  </li>
+
+  <li>
+    <strong>Dog Facts API (Locally Hosted):</strong>
     <a href="http://localhost:4567/api/facts?number=20" target="_blank">http://localhost:4567/api/facts?number=20</a>
+    <p>
+      This API provides interesting facts about dogs, which are randomly assigned to different breeds. 
+      The API is hosted locally to ensure consistent data availability.
+    </p>
   </li>
+
   <li>
-    <strong>Dog Diseases CSV:</strong>
-    Local CSV file data
+    <strong>Dog Diseases Dataset (CSV File):</strong>
+    <p>
+      A manually curated CSV file contains information on common dog diseases, including their names 
+      and descriptions. This dataset is imported into the database and linked to relevant breeds 
+      to provide health-related insights.
+    </p>
   </li>
 </ul>
 
-<p>Below is the ERD diagram for this project:</p>
+<h2>Data Structure</h2>
+<p>
+  The following Entity-Relationship Diagram (ERD) illustrates the structure of the database and how 
+  different datasets are interconnected within this application:
+</p>
+
 <div class="text-center">
   <%= image_tag "ERD.png", alt: "ERD Diagram", class: "img-fluid" %>
 </div>
+
+<p>
+  The database follows a relational design where:
+</p>
+<ul>
+  <li>
+    Each <strong>Breed</strong> record represents a dog breed and may have associated sub-breeds.
+  </li>
+  <li>
+    <strong>Dog Images</strong> are linked to their respective breeds to visually represent each breed.
+  </li>
+  <li>
+    <strong>Dog Facts</strong> are assigned to different breeds to enhance user engagement.
+  </li>
+  <li>
+    <strong>Dog Diseases</strong> are mapped to breeds that are commonly affected by specific health conditions.
+  </li>
+</ul>

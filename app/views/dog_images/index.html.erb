@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>All Dog Images</h1>
+  <div class="row">
+    <% @dog_images.each do |image| %>
+      <div class="col-md-3 mb-3">
+        <%= link_to image_tag(image.url, class: "img-fluid rounded"), dog_image_path(image) %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to 'Back to Home', root_path, class: "btn btn-primary mt-3" %>
+</div>
