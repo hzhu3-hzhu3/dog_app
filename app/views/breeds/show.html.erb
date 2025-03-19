@@ -1,2 +1,44 @@
 <h1>Breeds#show</h1>
 <p>Find me in app/views/breeds/show.html.erb</p>
+
+<div class="container">
+  <h1><%= @breed.name %></h1>
+
+  <% if @breed.parent_breed.present? %>
+    <p>Parent Breed: <%= link_to @breed.parent_breed.name, breed_path(@breed.parent_breed), class: "text-primary" %></p>
+  <% end %>
+
+  <h3>Images</h3>
+  <div class="row">
+    <% @breed.dog_images.each do |image| %>
+      <div class="col-md-3 mb-3">
+        <%= image_tag image.url, alt: @breed.name, class: "img-fluid rounded" %>
+      </div>
+    <% end %>
+  </div>
+
+  <h3>Facts</h3>
+  <% if @breed.facts.any? %>
+    <ul>
+      <% @breed.facts.each do |fact| %>
+        <li><%= fact.fact %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No facts available.</p>
+  <% end %>
+
+
+  <h3>Diseases</h3>
+  <% if @breed.dog_diseases.any? %>
+    <ul>
+      <% @breed.dog_diseases.each do |disease| %>
+        <li><strong><%= disease.name %></strong> - <%= disease.description %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No disease information available.</p>
+  <% end %>
+
+  <%= link_to 'Back to All Breeds', breeds_path, class: "btn btn-secondary mt-3" %>
+</div>
