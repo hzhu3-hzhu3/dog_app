@@ -1,0 +1,2 @@
+class DogDisease < ApplicationRecord
+end
