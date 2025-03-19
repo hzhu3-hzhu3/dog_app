@@ -7,5 +7,8 @@ class Breed < ApplicationRecord
   has_many :breed_facts, dependent: :destroy
   has_many :facts, through: :breed_facts
 
+  has_many :breed_diseases, dependent: :destroy
+  has_many :dog_diseases, through: :breed_diseases
+
   validates :name, presence: true, uniqueness: true
 end

@@ -1,7 +1,7 @@
 class BreedsController < ApplicationController
   def index
     if params[:q].present?
-      breeds = Breed.where("name ILIKE ?", "%#{params[:q]}%")
+      breeds = Breed.where("LOWER(name) LIKE LOWER(?)", "%#{params[:q]}%")
     else
       breeds = Breed.all
     end
