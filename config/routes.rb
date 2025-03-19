@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "breeds/index"
+  get "breeds/show"
   get "pages/about", to: "pages#about", as: "about"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
