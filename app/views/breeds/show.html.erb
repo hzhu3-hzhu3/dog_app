@@ -9,7 +9,7 @@
   <div class="row">
     <% @breed.dog_images.each do |image| %>
       <div class="col-md-3 mb-3">
-        <%= image_tag image.url, alt: @breed.name, class: "img-fluid rounded" %>
+        <%= link_to image_tag(image.url, alt: @breed.name, class: "img-fluid rounded"), dog_image_path(image) %>
       </div>
     <% end %>
   </div>
@@ -18,19 +18,18 @@
   <% if @breed.facts.any? %>
     <ul>
       <% @breed.facts.each do |fact| %>
-        <li><%= fact.fact %></li>
+        <li><%= link_to fact.fact, fact_path(fact) %></li>
       <% end %>
     </ul>
   <% else %>
     <p>No facts available.</p>
   <% end %>
 
-
   <h3>Diseases</h3>
   <% if @breed.dog_diseases.any? %>
     <ul>
       <% @breed.dog_diseases.each do |disease| %>
-        <li><strong><%= disease.name %></strong> - <%= disease.description %></li>
+        <li><%= link_to disease.name, dog_disease_path(disease) %> - <%= disease.description %></li>
       <% end %>
     </ul>
   <% else %>

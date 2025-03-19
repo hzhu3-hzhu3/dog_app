@@ -1,0 +1,13 @@
+<div class="container">
+  <h1><%= @dog_disease.name %></h1>
+  <p><%= @dog_disease.description %></p>
+
+  <h3>Breeds affected:</h3>
+  <ul>
+    <% @dog_disease.breeds.each do |breed| %>
+      <li><%= link_to breed.name, breed_path(breed) %></li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Back to All Diseases', dog_diseases_path, class: "btn btn-secondary mt-3" %>
+</div>

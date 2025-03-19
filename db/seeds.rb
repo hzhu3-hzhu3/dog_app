@@ -96,4 +96,4 @@ Breed.find_each do |random_breed|
 end
 puts "Breed-Disease associations created: #{BreedDisease.count}"
 
-puts "✅ Seeding completed successfully!"
+puts "Done"

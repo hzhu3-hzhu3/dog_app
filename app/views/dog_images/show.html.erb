@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Image for <%= @dog_image.breed.name %></h1>
+  <%= image_tag @dog_image.url, alt: @dog_image.breed.name, class: "img-fluid rounded" %>
+
+  <p>Breed: <%= link_to @dog_image.breed.name, breed_path(@dog_image.breed) %></p>
+
+  <%= link_to 'Back to All Images', dog_images_path, class: "btn btn-secondary mt-3" %>
+</div>

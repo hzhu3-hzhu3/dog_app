@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Fact Detail</h1>
+  <p><%= @fact.fact %></p>
+
+  <h3>Associated Breeds</h3>
+  <ul>
+    <% @fact.breeds.each do |breed| %>
+      <li><%= link_to breed.name, breed_path(breed) %></li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Back to All Facts', facts_path, class: "btn btn-secondary mt-3" %>
+</div>
