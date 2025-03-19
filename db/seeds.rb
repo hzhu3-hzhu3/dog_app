@@ -83,4 +83,4 @@ Breed.all.sample(15).each do |random_breed|
   end
 end
 
-puts "Seeding done!"
+puts "Done"
